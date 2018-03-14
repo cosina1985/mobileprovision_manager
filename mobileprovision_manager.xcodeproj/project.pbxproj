@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E1830AF20591DCB00A7A844 /* demo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1830AE20591DCB00A7A844 /* demo.png */; };
 		7E4805E820590A25003E2354 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4805E720590A25003E2354 /* AppDelegate.m */; };
 		7E4805EA20590A25003E2354 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E4805E920590A25003E2354 /* Assets.xcassets */; };
 		7E4805ED20590A25003E2354 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E4805EB20590A25003E2354 /* MainMenu.xib */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E1830AE20591DCB00A7A844 /* demo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = demo.png; sourceTree = "<group>"; };
 		7E4805E320590A25003E2354 /* mobileprovision_manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobileprovision_manager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E4805E620590A25003E2354 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7E4805E720590A25003E2354 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -38,6 +40,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E1830AD20591DCB00A7A844 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				7E1830AE20591DCB00A7A844 /* demo.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		7E4805DA20590A25003E2354 = {
 			isa = PBXGroup;
 			children = (
@@ -57,6 +67,7 @@
 		7E4805E520590A25003E2354 /* mobileprovision_manager */ = {
 			isa = PBXGroup;
 			children = (
+				7E1830AD20591DCB00A7A844 /* images */,
 				7E4805F8205913C8003E2354 /* CommonUtil.h */,
 				7E4805F7205913C8003E2354 /* CommonUtil.m */,
 				7E4805E620590A25003E2354 /* AppDelegate.h */,
@@ -135,6 +146,7 @@
 			files = (
 				7E4805EA20590A25003E2354 /* Assets.xcassets in Resources */,
 				7E4805ED20590A25003E2354 /* MainMenu.xib in Resources */,
+				7E1830AF20591DCB00A7A844 /* demo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
