@@ -72,10 +72,6 @@
             }
             return idd;
         }
-        if ([tableColumn.identifier isEqualToString:@"3"]) {
-            NSDate *date = data[@"ExpirationDate"];
-            return date.timeIntervalSinceNow  > 0 ? @"NO" : @"YES";
-        }
         NSDate *date = data[@"ExpirationDate"];
         if ([tableColumn.identifier isEqualToString:@"4"]) {            
             return [CommonUtil stringFromDate:date toFormat:YYYYMMDDHHMM];
@@ -96,8 +92,7 @@
     
     NSPipe *outputPipe = [NSPipe pipe];
     [server setStandardInput:[NSPipe pipe]];
-    [server setStandardOutput:outputPipe];
-    
+    [server setStandardOutput:outputPipe];    
     [server launch];
     [server waitUntilExit];
     
