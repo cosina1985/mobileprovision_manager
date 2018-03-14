@@ -1,5 +1,5 @@
 # mobileprovision_manager
 manager xcode mobileprovision file
 
-![Demo](images/demo.png)
+![Demo](mobileprovision_manager/images/demo.png)
 
