@@ -13,6 +13,11 @@
 		7E4805ED20590A25003E2354 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E4805EB20590A25003E2354 /* MainMenu.xib */; };
 		7E4805F020590A25003E2354 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4805EF20590A25003E2354 /* main.m */; };
 		7E4805F9205913C8003E2354 /* CommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4805F7205913C8003E2354 /* CommonUtil.m */; };
+		7E900F3E21BBDFA9008C1171 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E900F3321BBDFA9008C1171 /* NSObject+SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7E900F3F21BBDFA9008C1171 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E900F3621BBDFA9008C1171 /* SBJsonParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7E900F4021BBDFA9008C1171 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E900F3821BBDFA9008C1171 /* SBJsonBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7E900F4121BBDFA9008C1171 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E900F3B21BBDFA9008C1171 /* SBJsonWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7E900F4221BBDFA9008C1171 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E900F3D21BBDFA9008C1171 /* NSString+SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +32,17 @@
 		7E4805F120590A25003E2354 /* mobileprovision_manager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = mobileprovision_manager.entitlements; sourceTree = "<group>"; };
 		7E4805F7205913C8003E2354 /* CommonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtil.m; sourceTree = "<group>"; };
 		7E4805F8205913C8003E2354 /* CommonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtil.h; sourceTree = "<group>"; };
+		7E900F3321BBDFA9008C1171 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		7E900F3421BBDFA9008C1171 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		7E900F3521BBDFA9008C1171 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		7E900F3621BBDFA9008C1171 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		7E900F3721BBDFA9008C1171 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		7E900F3821BBDFA9008C1171 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		7E900F3921BBDFA9008C1171 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		7E900F3A21BBDFA9008C1171 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		7E900F3B21BBDFA9008C1171 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		7E900F3C21BBDFA9008C1171 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		7E900F3D21BBDFA9008C1171 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +83,7 @@
 		7E4805E520590A25003E2354 /* mobileprovision_manager */ = {
 			isa = PBXGroup;
 			children = (
+				7E900F3221BBDFA9008C1171 /* json */,
 				7E1830AD20591DCB00A7A844 /* images */,
 				7E4805F8205913C8003E2354 /* CommonUtil.h */,
 				7E4805F7205913C8003E2354 /* CommonUtil.m */,
@@ -79,6 +96,24 @@
 				7E4805F120590A25003E2354 /* mobileprovision_manager.entitlements */,
 			);
 			path = mobileprovision_manager;
+			sourceTree = "<group>";
+		};
+		7E900F3221BBDFA9008C1171 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				7E900F3321BBDFA9008C1171 /* NSObject+SBJSON.m */,
+				7E900F3421BBDFA9008C1171 /* SBJsonBase.h */,
+				7E900F3521BBDFA9008C1171 /* SBJsonWriter.h */,
+				7E900F3621BBDFA9008C1171 /* SBJsonParser.m */,
+				7E900F3721BBDFA9008C1171 /* NSString+SBJSON.h */,
+				7E900F3821BBDFA9008C1171 /* SBJsonBase.m */,
+				7E900F3921BBDFA9008C1171 /* NSObject+SBJSON.h */,
+				7E900F3A21BBDFA9008C1171 /* JSON.h */,
+				7E900F3B21BBDFA9008C1171 /* SBJsonWriter.m */,
+				7E900F3C21BBDFA9008C1171 /* SBJsonParser.h */,
+				7E900F3D21BBDFA9008C1171 /* NSString+SBJSON.m */,
+			);
+			path = json;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -107,7 +142,7 @@
 		7E4805DB20590A25003E2354 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "余奔益";
 				TargetAttributes = {
 					7E4805E220590A25003E2354 = {
@@ -157,8 +192,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E900F4121BBDFA9008C1171 /* SBJsonWriter.m in Sources */,
 				7E4805F020590A25003E2354 /* main.m in Sources */,
+				7E900F4021BBDFA9008C1171 /* SBJsonBase.m in Sources */,
 				7E4805F9205913C8003E2354 /* CommonUtil.m in Sources */,
+				7E900F3E21BBDFA9008C1171 /* NSObject+SBJSON.m in Sources */,
+				7E900F3F21BBDFA9008C1171 /* SBJsonParser.m in Sources */,
+				7E900F4221BBDFA9008C1171 /* NSString+SBJSON.m in Sources */,
 				7E4805E820590A25003E2354 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,6 +231,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -198,6 +239,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -246,6 +288,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -253,6 +296,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -289,6 +333,7 @@
 				DEVELOPMENT_TEAM = RMK9ZC3N7D;
 				INFOPLIST_FILE = mobileprovision_manager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ld.hgl.mobileprovision-manager";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -303,6 +348,7 @@
 				DEVELOPMENT_TEAM = RMK9ZC3N7D;
 				INFOPLIST_FILE = mobileprovision_manager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ld.hgl.mobileprovision-manager";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

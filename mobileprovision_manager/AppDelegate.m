@@ -1,5 +1,10 @@
 #import "AppDelegate.h"
 #import "CommonUtil.h"
+#import "JSON.h"
+#define get_sp(a) [[NSUserDefaults standardUserDefaults] objectForKey:a]
+#define set_sp(a,b) [[NSUserDefaults standardUserDefaults] setObject:b forKey:a]
+#define sp [NSUserDefaults standardUserDefaults]
+
 #define ROOT_PATH [@"~/Library/MobileDevice/Provisioning Profiles" stringByExpandingTildeInPath]
 @interface AppDelegate ()<NSTableViewDelegate,NSTableViewDataSource>
 
@@ -13,14 +18,15 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
-    self.infos = [NSMutableDictionary dictionaryWithCapacity:5];
+    self.infos = [get_sp(@"infos") JSONValue];
+    if(nil == self.infos){
+        self.infos = [NSMutableDictionary dictionaryWithCapacity:5];
+    }
     [self reload];
 }
 
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-    // Insert code here to tear down your application
 }
 
 -(void) reload{
@@ -32,7 +38,8 @@
         }
     }
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        for(NSString *each in self.files){
+        NSArray *filesCopy = [self.files mutableCopy];
+        for(NSString *each in filesCopy){
             if (nil == self.infos[each]) {
                 NSString *result = [self getInfoCommand:[NSString stringWithFormat:@"%@/%@",ROOT_PATH,each]];
                 NSData *data = [result dataUsingEncoding:NSUTF8StringEncoding];
@@ -45,8 +52,10 @@
                 });
             }
         }
+        set_sp(@"infos", [self.infos JSONRepresentation]);
+        [sp synchronize];
     });
-    [self.tv reloadData];
+    [self reloadWithSort];
 }
 
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView{
@@ -65,12 +74,7 @@
             return data[@"Name"];
         }
         if ([tableColumn.identifier isEqualToString:@"3"]) {
-            NSString *idd = data[@"Entitlements"][@"application-identifier"];
-            NSString *firstPart = [idd componentsSeparatedByString:@"."].firstObject;
-            if (firstPart) {
-                idd = [idd substringFromIndex:firstPart.length + 1];
-            }
-            return idd;
+            return [self idd4:data];
         }
         NSDate *date = data[@"ExpirationDate"];
         if ([tableColumn.identifier isEqualToString:@"4"]) {            
@@ -82,6 +86,16 @@
         }
     }
     return @"-";
+}
+
+
+-(NSString *) idd4:(NSDictionary *) data{
+    NSString *idd = data[@"Entitlements"][@"application-identifier"];
+    NSString *firstPart = [idd componentsSeparatedByString:@"."].firstObject;
+    if (firstPart) {
+        idd = [idd substringFromIndex:firstPart.length + 1];
+    }
+    return idd;
 }
 
 -(NSString *) getInfoCommand:(NSString *) path{
@@ -133,7 +147,82 @@
         return;
     }
     [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:urls];
-    
+}
+
+
+-(void) reloadWithSort{
+    NSSortDescriptor *sd = self.tv.sortDescriptors.firstObject;
+    NSLog(@"sd. [%@]",sd.key);
+    if (sd) {
+        if([sd.key isEqualToString:@"1"]){
+            [self.files sortUsingComparator:^NSComparisonResult(NSString *_Nonnull obj1, NSString *_Nonnull obj2) {
+                if (sd.ascending) {
+                    return [obj1 compare:obj2];
+                }else{
+                    return [obj2 compare:obj1];
+                }
+            }];
+        }
+        [self.files sortUsingComparator:^NSComparisonResult(NSString *_Nonnull fileName1, NSString *_Nonnull fileName2) {
+            NSDictionary *obj1 = self.infos[fileName1];
+            NSDictionary *obj2 = self.infos[fileName2];
+            if (obj1 == nil && obj2 == nil) {
+                return NSOrderedSame;
+            }
+            if (sd.ascending) {
+                if (obj1 == nil) {
+                    return NSOrderedAscending;
+                }
+                if (obj2 == nil) {
+                    return NSOrderedDescending;
+                }
+                if([sd.key isEqualToString:@"2"]){
+                    NSString *name1 = obj1[@"Name"];
+                    NSString *name2 = obj2[@"Name"];
+                    return [name1 compare:name2];
+                }
+                if([sd.key isEqualToString:@"3"]){
+                    NSString *name1 = [self idd4:obj1];
+                    NSString *name2 = [self idd4:obj2];
+                    return [name1 compare:name2];
+                }
+                if([sd.key isEqualToString:@"4"] || [sd.key isEqualToString:@"5"]){
+                    NSDate *date1 = obj1[@"ExpirationDate"];
+                    NSDate *date2 = obj2[@"ExpirationDate"];
+                    return [date1 compare:date2];
+                }
+                return NSOrderedAscending;
+            }else{
+                if (obj1 == nil) {
+                    return NSOrderedDescending;
+                }
+                if (obj2 == nil) {
+                    return NSOrderedAscending;
+                }
+                if([sd.key isEqualToString:@"2"]){
+                    NSString *name1 = obj1[@"Name"];
+                    NSString *name2 = obj2[@"Name"];
+                    return [name2 compare:name1];
+                }
+                if([sd.key isEqualToString:@"3"]){
+                    NSString *name1 = [self idd4:obj1];
+                    NSString *name2 = [self idd4:obj2];
+                    return [name2 compare:name1];
+                }
+                if([sd.key isEqualToString:@"4"] || [sd.key isEqualToString:@"5"]){
+                    NSDate *date1 = obj1[@"ExpirationDate"];
+                    NSDate *date2 = obj2[@"ExpirationDate"];
+                    return [date2 compare:date1];
+                }
+                return NSOrderedAscending;
+            }
+        }];
+        
+    }
+    [self.tv reloadData];
+}
+-(void)tableView:(NSTableView *)tableView sortDescriptorsDidChange:(NSArray<NSSortDescriptor *> *)oldDescriptors{
+    [self reloadWithSort];
 }
 
 @end
